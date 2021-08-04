@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bienvenido! </title>
+</head>
+<body>
+   
+     <main class="main-container">  
+    <img src="https://i.imgur.com/yVi19yZ.jpg" id='img'class="container">
+    
+    <h3 id='welcome'class="welcome">   Welcome! </h3>
+    <input type="text" name="" id="username" placeholder=" GitHub Username" class="login" >   
+    <ul>
+        <li id="bio"></li>
+        <li> Twitter: <span id="twitter"></span> </li>
+    </ul>
+    
+     <button class="button"  onclick="fetchData()">Search</button>
+    
+    <script> 
+    async function fetchData () {
+        
+            const gitUser = document.getElementById ("username").value;
+             console.log (gitUser)
+             const inputValueNormalized = gitUser.toLowerCase()
+             const data =  await fetch (`https://api.github.com/users/${inputValueNormalized}`)
+            const json =  await data.json ()
+            console.log(json)
+            document.getElementById('img').src = json.avatar_url
+            document.getElementById('welcome').innerText = json.name
+            
+            document.getElementById('twitter').innerText = json.twitter_username
+            
+          
+
+           
+
+        
+
+
+    }
+    </script>
+    
+    </main> 
+</body>
+</html>
